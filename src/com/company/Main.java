@@ -9,7 +9,7 @@ public class Main {
 
         // #1
         System.out.println("Задача №1");
-        byte clientOS = 1; //0 — iOS, 1 — Android
+        byte clientOS = 0; //0 — iOS, 1 — Android
 
         if (clientOS == 0) {
             System.out.println("Установите версию приложения для iOS по ссылке.");
@@ -19,52 +19,38 @@ public class Main {
 
         // #2
         System.out.println("\nЗадача №2");
+
         int clientDeviceYear = 2015;
-        if (clientDeviceYear >= 2015) {
-            if (clientOS == 0) {
-                System.out.println("Установите версию приложения для iOS по ссылке.");
-            } else {
-                System.out.println("Установите версию приложения для Android по ссылке.");
-            }
-        } else {
-            if (clientOS == 0) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке.");
-            } else {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке.");
-            }
-        }
+        String message = "Установите";
+
+        message += (clientDeviceYear >= 2015) ? " " : " облегченную ";
+        message += "версию приложения для ";
+        message += (clientOS == 1) ? "Android" : "iOS";
+        message += " по ссылке.";
+
+        System.out.println(message);
 
         // #3
         System.out.println("\nЗадача №3");
-        int currentYear = 2022;
-        if (currentYear % 100 == 0) {
-            if (currentYear % 400 == 0) {
-                System.out.println(currentYear + " год является високосным.");
-            } else {
-                System.out.println(currentYear + " год не является високосным.");
-            }
-        } else {
-            if (currentYear % 4 == 0) {
-                System.out.println(currentYear + " год является високосным.");
-            } else {
-                System.out.println(currentYear + " год не является високосным.");
-            }
-        }
+        int currentYear = 2100;
+
+        if ( ((currentYear % 100 == 0) && (currentYear % 400 == 0)) || ((currentYear % 100 != 0) && (currentYear % 4 == 0)) )
+            System.out.println(currentYear + " год является високосным.");
+        else
+            System.out.println(currentYear + " год не является високосным.");
 
         // #4
         System.out.println("\nЗадача №4");
 
-        int deliveryDistance = 95;
-        int deliveryDays = 4;
+        int deliveryDistance = 195;
 
-        if ( deliveryDistance < 20) // Доставка в пределах 20 км занимает сутки.
-            deliveryDays = 1;
-        else if ( (deliveryDistance >= 20) && (deliveryDistance < 60) ) //Доставка в пределах от 20 км до 60 км добавляет еще один день доставки.
-            deliveryDays = 2;
-        else if ( (deliveryDistance >= 60) && (deliveryDistance < 100) ) //Доставка в пределах 60 км до 100 км добавляет еще одни сутки.
-            deliveryDays = 3;
+        int deliveryDays = 1; // Доставка в пределах 20 км занимает сутки.
+        if (deliveryDistance >= 20) //Доставка в пределах от 20 км до 60 км добавляет еще один день доставки.
+            deliveryDays += 1;
+        if (deliveryDistance >= 60) //Доставка в пределах 60 км до 100 км добавляет еще одни сутки.
+            deliveryDays += 1;
 
-        if ( (deliveryDays > 0) && (deliveryDays <= 3) )
+        if ( (deliveryDistance > 0) && (deliveryDistance <= 100) )
             System.out.println("Потребуется дней: " + deliveryDays);
         else
             System.out.println("Доставка на такое расстояние невозможна.");
